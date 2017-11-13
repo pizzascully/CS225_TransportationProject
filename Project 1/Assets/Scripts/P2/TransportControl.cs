@@ -15,6 +15,7 @@ public class TransportControl : MonoBehaviour {
 	//Airplane Behav
 	bool activePlane;
 	int planeX, planeY, airPortX, airPortY;
+	int moveY, moveX;
 	//Turn
 	float turnLength, turnTimer;
 	//Depot Location 
@@ -77,6 +78,9 @@ public class TransportControl : MonoBehaviour {
 		depotY = 0;
 		grid [depotX, depotY].GetComponent<Renderer> ().material.color = Color.black;
 
+		moveX = 0;
+		moveY = 0;
+
 	}
 
 
@@ -90,27 +94,6 @@ public class TransportControl : MonoBehaviour {
 			} else {
 				activePlane = false;
 				clickedSky.transform.localScale /= (1.5f);
-					
-			}
-		}
-		//if an airplane was not clicked
-		else {
-			if (activePlane) { 
-				//if depot set to black, otherwise set to white
-				if (planeX == depotX && planeY == depotY) {
-					grid [depotX, depotY].GetComponent<Renderer> ().material.color = Color.black;
-				} else {
-					grid [planeX, planeY].GetComponent<Renderer> ().material.color = Color.white;
-
-				}
-				grid [planeX, planeY].transform.localScale /= (1.5f);
-
-
-				//place airplane in new position 
-				planeX = x;
-				planeY = y; 
-				grid [x,y].GetComponent<Renderer> ().material.color = Color.red;
-				grid [x,y].transform.localScale *= (1.5f);
 			}
 		}
 			
@@ -136,10 +119,68 @@ public class TransportControl : MonoBehaviour {
 			planeCargo = 0;
 		}
 	}
+
+	void DetectKeyboardInput () {
+		if (Input.GetKeyDown(KeyCode.DownArrow)) {
+			moveY = -1;
+			moveX = 0;
+		}
+		else if (Input.GetKeyDown(KeyCode.UpArrow)) {
+				moveY = 1;
+				moveX = 0;
+		}
+			else if (Input.GetKeyDown(KeyCode.RightArrow)) {
+					moveY = 0;
+					moveX = 1;
+				}
+				else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+						moveY = 0;
+						moveX = -1;
+					}
+				}
+	
+				
+
+	void MoveAirplane () {
+
+		if (activePlane) {
+			if (planeX == depotX && planeY == depotY) {
+				grid [depotX, depotY].GetComponent<Renderer> ().material.color = Color.black;
+			} else {
+				grid [planeX, planeY].GetComponent<Renderer> ().material.color = Color.white;
+
+			}
+
+			grid [planeX, planeY].transform.localScale /= (1.5f);
+
+			planeX += moveX;
+		if (planeX >= gridX) {
+			planeX = gridX - 1;
+		}
+		else if (planeX < 0) {
+				planeX = 0; 
+			}
+			planeY += moveY;
+			if (planeY >= gridY) {
+				moveY = gridY - 1;
+			}
+			else if (planeY < 0) {
+				planeY = 0; 
+			}
+			grid [planeX,planeY].GetComponent<Renderer> ().material.color = Color.red;
+			grid [planeX,planeY].transform.localScale *= (1.5f);
+		}
+		moveX = 0;
+		moveY = 0;
+	}
+
 	// Update is called once per frame
 	void Update () {
-		
+
+		DetectKeyboardInput (); 
+
 		if (Time.time > turnTimer) {
+			MoveAirplane (); 
 
 			LoadCargo (); 
 			DeliverCargo ();

@@ -1117,7 +1117,7 @@ extern const int32_t g_FieldOffsetTable1711[10];
 extern const int32_t g_FieldOffsetTable1712[11];
 extern const int32_t g_FieldOffsetTable1713[4];
 extern const int32_t g_FieldOffsetTable1715[3];
-extern const int32_t g_FieldOffsetTable1716[20];
+extern const int32_t g_FieldOffsetTable1716[22];
 extern const int32_t g_FieldOffsetTable1717[9];
 
 extern const int32_t* g_FieldOffsetTable[1718] = 

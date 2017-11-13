@@ -11,7 +11,7 @@ Summary:
     Generic Abstract Classes = 3
     Attributes = 178
   Total Field Removals = 792
-  Total Method Removals = 10594
+  Total Method Removals = 10592
 ---------------------------------------------------
 ---------------------------------------------------
 Assembly: Mono.Security
@@ -9453,7 +9453,7 @@ Summary:
     Generic Abstract Classes = 0
     Attributes = 49
   Total Field Removals = 53
-  Total Method Removals = 4307
+  Total Method Removals = 4305
   References Removed = 0
 ---------------------------------------------------
     AOT.MonoPInvokeCallbackAttribute
@@ -11845,8 +11845,6 @@ Summary:
         GetKey(System.String)
         GetKey(UnityEngine.KeyCode)
         GetKeyDown(System.String)
-        GetKeyDown(UnityEngine.KeyCode)
-        GetKeyDownInt(System.Int32)
         GetKeyDownString(System.String)
         GetKeyInt(System.Int32)
         GetKeyString(System.String)
