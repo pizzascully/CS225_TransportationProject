@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TransportControl : MonoBehaviour {
 
@@ -22,6 +23,8 @@ public class TransportControl : MonoBehaviour {
 	int planeCapacity, planeCargo;
 	int cargoRate;
 	int score;
+	//User Interface
+	public Text scoreText;
 
 
 	// Use this for initialization
@@ -140,7 +143,7 @@ public class TransportControl : MonoBehaviour {
 
 			LoadCargo (); 
 			DeliverCargo ();
-			print ("Cargo: " + planeCargo + " Score: " + score);
+			scoreText.text = "Cargo: " + planeCargo + " Score: " + score;
 
 			turnTimer += turnLength; 
 
